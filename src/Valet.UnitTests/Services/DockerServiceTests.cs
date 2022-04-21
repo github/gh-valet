@@ -217,7 +217,7 @@ public class DockerServiceTests
                 It.IsAny<IEnumerable<(string, string)>?>(),
                 It.IsAny<bool>()
             )
-        ).ReturnsAsync(false);
+        ).ThrowsAsync(new Exception());
 
         // Act, Assert
         Assert.ThrowsAsync<Exception>(() => _dockerService.VerifyDockerRunningAsync());
