@@ -4,7 +4,7 @@ namespace Valet.Commands;
 public class Version : ContainerCommand
 {
     private readonly string[] _args;
-    
+
     public Version(string[] args)
         : base(args)
     {
