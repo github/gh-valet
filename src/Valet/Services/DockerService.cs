@@ -71,14 +71,16 @@ public class DockerService : IDockerService
 
     public async Task VerifyDockerRunningAsync()
     {
-        // TODO: Verify this is cross platform
-        var result = await _processService.RunAsync(
-            "docker",
-            "info",
-            output: false
-        );
-
-        if (!result)
+        try
+        {
+            // TODO: Verify this is cross platform
+            var _ = await _processService.RunAsync(
+                "docker",
+                "info",
+                output: false
+            );
+        }
+        catch (Exception)
         {
             throw new Exception("Please ensure docker is installed and the docker daemon is running");
         }
