@@ -143,7 +143,7 @@ public class DockerServiceTests
         _processService.Setup(handler =>
             handler.RunAsync(
                 "docker",
-                $"run --rm -v \"{Directory.GetCurrentDirectory()}\":/data {image} {string.Join(' ', arguments)}",
+                $"run --rm -t -v \"{Directory.GetCurrentDirectory()}\":/data {image} {string.Join(' ', arguments)}",
                 Directory.GetCurrentDirectory(),
                 new[] { new System.ValueTuple<string, string>("MSYS_NO_PATHCONV", "1") },
                 true
@@ -172,7 +172,7 @@ public class DockerServiceTests
         _processService.Setup(handler =>
             handler.RunAsync(
                 "docker",
-                $"run --rm --env GITHUB_ACCESS_TOKEN=foo --env GITHUB_INSTANCE_URL=https://github.fabrikam.com --env JENKINS_ACCESS_TOKEN=bar -v \"{Directory.GetCurrentDirectory()}\":/data {image} {string.Join(' ', arguments)}",
+                $"run --rm -t --env GITHUB_ACCESS_TOKEN=foo --env GITHUB_INSTANCE_URL=https://github.fabrikam.com --env JENKINS_ACCESS_TOKEN=bar -v \"{Directory.GetCurrentDirectory()}\":/data {image} {string.Join(' ', arguments)}",
                 Directory.GetCurrentDirectory(),
                 new[] { new System.ValueTuple<string, string>("MSYS_NO_PATHCONV", "1") },
                 true
