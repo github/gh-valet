@@ -17,6 +17,8 @@ public class ProcessService : IProcessService
         bool output = true)
     {
         var tcs = new TaskCompletionSource<bool>();
+        var cts = new CancellationTokenSource();
+
         var startInfo = new ProcessStartInfo
         {
             FileName = filename,
@@ -24,7 +26,8 @@ public class ProcessService : IProcessService
             RedirectStandardOutput = true,
             RedirectStandardError = true,
             UseShellExecute = false,
-            WorkingDirectory = cwd
+            WorkingDirectory = cwd,
+            CreateNoWindow = true
         };
 
         if (environmentVariables != null)
@@ -44,8 +47,8 @@ public class ProcessService : IProcessService
         void OnProcessExited(object? sender, EventArgs args)
         {
             process.Exited -= OnProcessExited;
-            process.OutputDataReceived -= OnOutputDataReceived;
 
+            cts.Cancel();
             if (process.ExitCode == 0)
             {
                 tcs.TrySetResult(true);
@@ -59,17 +62,27 @@ public class ProcessService : IProcessService
             process.Dispose();
         }
 
-        void OnOutputDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            if (output) Console.WriteLine(e.Data);
-        }
-
-        process.OutputDataReceived += OnOutputDataReceived;
         process.Exited += OnProcessExited;
-
         process.Start();
-        process.BeginOutputReadLine();
+
+        Read(process.StandardOutput, output, cts.Token);
+        Read(process.StandardError, output, cts.Token);
 
         return tcs.Task;
+    }
+    
+    private static void Read(StreamReader reader, bool output, CancellationToken ctx)
+    {
+        if (!output) return;
+
+        Task.Run(() =>
+        {
+            while (true)
+            {
+                int current;
+                while ((current = reader.Read()) >= 0)
+                    Console.Write((char)current);
+            }
+        }, ctx);
     }
 }

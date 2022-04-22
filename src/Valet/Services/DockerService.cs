@@ -52,7 +52,7 @@ public class DockerService : IDockerService
     {
         var valetArguments = new List<string>
         {
-            "run --rm"
+            "run --rm -t"
         };
         valetArguments.AddRange(GetEnvironmentVariableArguments());
         valetArguments.Add($"-v \"{Directory.GetCurrentDirectory()}\":/data");
