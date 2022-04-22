@@ -6,11 +6,11 @@ Valet is a tool to help facilitate migrations to GitHub Actions. Valet supports 
 
 This repository provides functionality that extends the [GitHub CLI](https://cli.github.com/) to migrate pipelines to GitHub Actions using Valet.
 
-> Valet is in a private preview and customers must be onboarded prior to using the Valet Issue Ops workflow. Please reach out to GitHub Sales to enquire about getting into the private preview.
+> Valet is in a private preview and customers must be onboarded prior to using this CLI extension. Please reach out to GitHub Sales to enquire about getting into the private preview.
 
 ## Supported platforms
 
-Valet current supports migrating pipelines to GitHub Actions from the following platforms:
+Valet currently supports migrating pipelines to GitHub Actions from the following platforms:
 
 - Azure DevOps
 - Jenkins
@@ -38,7 +38,6 @@ To verify the extension is installed, run this command:
 
 ```bash
 $ gh valet -h
-
 Description:
   Valet is a tool to help plan and facilitate migrations to GitHub Actions.
 
@@ -59,19 +58,19 @@ Commands:
 
 ### Configuration
 
-New versions of Valet are released on a regular basis. To ensure you're always up to date, this command should be run often to update the latest version of the tooling:
+New versions of Valet are released on a regular basis. To ensure you're always up to date, the following command should be run often:
 
 ```bash
 $ gh valet update
 ```
 
-**Note**: You will need to be authenticated with GitHub Container Registery for this command to be successful. Optionally, credentials can be provided to this command to be used to authenticate:
+**Note**: You will need to be authenticated with GitHub Container Registery for this command to be successful. Optionally, credentials can be provided to this command that will be used to authenticate on your behalf:
 
 ```bash
 $ gh valet update --username $GITHUB_HANDLE --password $GITHUB_TOKEN
 ```
 
-In order for Valet to communicate to your current CI server and GitHub, credentials must be available for the command. These can be configured in a `.env.local` file as described [here](https://github.com/valet-customers/distribution/blob/main/README.md#using-environment-variables).
+In order for Valet to communicate to your current CI server and GitHub, various credentials must be available for the command. These can be configured using environment variables or a `.env.local` file as described [here](https://github.com/valet-customers/distribution/blob/main/README.md#using-environment-variables).
 
 ### Usage
 
