@@ -1,11 +1,7 @@
-using System.Collections.Specialized;
+using System.Diagnostics;
 using Valet.Interfaces;
 
 namespace Valet.Services;
-
-using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
 
 public class ProcessService : IProcessService
 {
@@ -65,19 +61,19 @@ public class ProcessService : IProcessService
         process.Exited += OnProcessExited;
         process.Start();
 
-        Read(process.StandardOutput, output, cts.Token);
-        Read(process.StandardError, output, cts.Token);
+        ReadStream(process.StandardOutput, output, cts.Token);
+        ReadStream(process.StandardError, output, cts.Token);
 
         return tcs.Task;
     }
-    
-    private static void Read(StreamReader reader, bool output, CancellationToken ctx)
+
+    private void ReadStream(StreamReader reader, bool output, CancellationToken ctx)
     {
         if (!output) return;
 
         Task.Run(() =>
         {
-            while (true)
+            while (!ctx.IsCancellationRequested)
             {
                 int current;
                 while ((current = reader.Read()) >= 0)
