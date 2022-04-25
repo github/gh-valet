@@ -90,7 +90,7 @@ public class DockerService : IDockerService
         }
         catch (Exception)
         {
-            throw new Exception("Unable to locate Valet image locally. Please run `gh valet update` to fetch the latest image.");
+            throw new Exception("Unable to locate Valet image locally. Please run `gh valet update` to fetch the latest image prior to running this command.");
         }
     }
 
