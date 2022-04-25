@@ -17,11 +17,6 @@ public class App
     public async Task<int> UpdateValetAsync(string? username = null, string? password = null)
     {
         await _dockerService.VerifyDockerRunningAsync().ConfigureAwait(false);
-        await _dockerService.VerifyImagePresentAsync(
-            ValetImage,
-            ValetContainerRegistry,
-            "latest"
-        ).ConfigureAwait(false);
 
         username ??= Environment.GetEnvironmentVariable("GHCR_USERNAME");
         password ??= Environment.GetEnvironmentVariable("GHCR_PASSWORD");
@@ -45,6 +40,7 @@ public class App
             ValetContainerRegistry,
             "latest"
         ).ConfigureAwait(false);
+        
         await _dockerService.ExecuteCommandAsync(
             ValetImage,
             ValetContainerRegistry,
