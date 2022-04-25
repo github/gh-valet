@@ -84,7 +84,7 @@ public class DockerService : IDockerService
         {
             await _processService.RunAsync(
                 "docker",
-                $"inspect --type image {server}/{image}:{version}",
+                $"image inspect {server}/{image}:{version}",
                 output: false
             );
         }

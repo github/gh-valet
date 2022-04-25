@@ -233,7 +233,7 @@ public class DockerServiceTests
         _processService.Setup(handler =>
             handler.RunAsync(
                 "docker",
-                $"inspect --type image {server}/{image}:{version}",
+                $"image inspect {server}/{image}:{version}",
                 It.IsAny<string?>(),
                 It.IsAny<IEnumerable<(string, string)>?>(),
                 It.IsAny<bool>()
@@ -256,7 +256,7 @@ public class DockerServiceTests
         _processService.Setup(handler =>
             handler.RunAsync(
                 "docker",
-                $"inspect --type image {server}/{image}:{version}",
+                $"image inspect {server}/{image}:{version}",
                 It.IsAny<string?>(),
                 It.IsAny<IEnumerable<(string, string)>?>(),
                 It.IsAny<bool>()
