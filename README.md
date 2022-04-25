@@ -70,7 +70,7 @@ $ gh valet update
 $ gh valet update --username $GITHUB_HANDLE --password $GITHUB_TOKEN
 ```
 
-In order for Valet to communicate to your current CI server and GitHub, various credentials must be available for the command. These can be configured using environment variables or a `.env.local` file as described [here](https://github.com/valet-customers/distribution/blob/main/README.md#using-environment-variables).
+In order for Valet to communicate with your current CI server and GitHub, various credentials must be available for the command. These can be configured using environment variables or a `.env.local` file as described [here](https://github.com/valet-customers/distribution/blob/main/README.md#using-environment-variables).
 
 ### Usage
 
@@ -78,7 +78,7 @@ Now that Valet is configured and up-to-date, different subcommands of `gh valet`
 
 #### Audit
 
-The `audit` subcommand can be used to scan a CI server output a summary of the current pipelines. This summary can then be used to plan timelines for migrating to GitHub Actions.
+The `audit` subcommand can be used to scan a CI server and output a summary of the current pipelines. This summary can then be used to plan timelines for migrating to GitHub Actions.
 
 To run an audit, use the following command to determine the options that are relevant to your use case:
 
@@ -109,7 +109,7 @@ The `forecast` subcommand can be used to forecast GitHub Actions usage from hist
 To run a forecast, use the following command to determine the options that are relevant to your use case:
 
 ```bash
-$ gh valet audit -h
+$ gh valet forecast -h
 Description:
   Forecasts GitHub actions usage from historical pipeline utilization.
 
