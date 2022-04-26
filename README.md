@@ -2,21 +2,21 @@
 
 [![.github/workflows/ci.yml](https://github.com/github/gh-valet/actions/workflows/ci.yml/badge.svg)](https://github.com/github/gh-valet/actions/workflows/ci.yml)
 
-Valet is a tool to help facilitate migrations to GitHub Actions. Valet supports migrating pipelines from Jenkins, Azure DevOps, GitLab CI, Circle CI, and Travis CI to GitHub Actions.
+Valet helps facilitate the migration of Azure DevOps, Circle CI, GitLab CI, Jenkins, and Travis CI pipelines to GitHub Actions. This repository provides functionality that extends the [GitHub CLI](https://cli.github.com/) to migrate pipelines to GitHub Actions using Valet.
 
-This repository provides functionality that extends the [GitHub CLI](https://cli.github.com/) to migrate pipelines to GitHub Actions using Valet.
+> Because Valet is in private preview, customers must be onboarded prior to using the Valet IssueOps workflow. Please reach out to GitHub Sales to inquire about being added to the private preview.
 
-> Valet is in a private preview and customers must be onboarded prior to using this CLI extension. Please reach out to GitHub Sales to enquire about getting into the private preview.
+Note: You can request support by creating an issue [here](https://github.com/github/gh-valet/issues/new). The Valet team responds to support requests Monday through Friday between the hours of 9AM EST and 5PM PST.
 
 ## Supported platforms
 
 Valet currently supports migrating pipelines to GitHub Actions from the following platforms:
 
 - Azure DevOps
-- Jenkins
-- Travis CI
 - Circle CI
 - GitLab CI
+- Jenkins
+- Travis CI
 
 Learn more about how Valet works for each of the supported platforms in the documentation [here](https://github.com/valet-customers/distribution/blob/main/README.md).
 
