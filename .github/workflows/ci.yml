@@ -45,7 +45,7 @@ jobs:
           check_name: "Unit Test Results"
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-dotnet@v2
