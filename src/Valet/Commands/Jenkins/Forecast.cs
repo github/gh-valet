@@ -16,7 +16,7 @@ public class Forecast : ContainerCommand
         Description = "Folders to forecast in the instance",
         IsRequired = false
     };
-    
+
     protected override List<Option> Options => new()
     {
         Common.InstanceUrl,
