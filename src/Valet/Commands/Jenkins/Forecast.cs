@@ -11,16 +11,17 @@ public class Forecast : ContainerCommand
     protected override string Name => "jenkins";
     protected override string Description => "Forecasts GitHub Actions usage from historical Jenkins pipeline utilization.";
 
-    private static readonly Option<FileInfo> ConfigFilePath = new("--config-file-path")
+    private static readonly Option<string[]> FoldersOption = new(new[] { "-f", "--folders" })
     {
-        Description = "The file path corresponding to the Jenkins configuration file.",
-        IsRequired = false,
+        Description = "Folders to forecast in the instance",
+        IsRequired = false
     };
-
+    
     protected override List<Option> Options => new()
     {
         Common.InstanceUrl,
         Common.Username,
-        Common.AccessToken
+        Common.AccessToken,
+        FoldersOption
     };
 }
