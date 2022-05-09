@@ -18,7 +18,7 @@ public class Forecast : BaseCommand
         Description = "The start date of the forecast analysis in YYYY-MM-DD format.",
         IsRequired = false,
     };
-    
+
     private static readonly Option<int> TimeSlice = new("--time-slice", getDefaultValue: () => 60)
     {
         Description = "The time slice in seconds to use for computing concurrency metrics.",
