@@ -22,7 +22,7 @@ You can find detailed information about how Valet works for each of the supporte
 
 ## Getting started with the Valet CLI
 
-Valet is distributed as a Docker container and an [extension](https://github.com/github/gh-valet) to the official [GitHub CLI](https://cli.github.com) to interact with the Docker container.
+Valet is distributed as a Docker container and this extension to the official [GitHub CLI](https://cli.github.com) to interact with the Docker container.
 
 ### Prerequisites
 
