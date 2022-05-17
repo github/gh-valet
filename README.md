@@ -22,15 +22,17 @@ You can find detailed information about how Valet works for each of the supporte
 
 ## Getting started with the Valet CLI
 
-### Pre-Requisites
+Valet is distributed as a Docker container and an [extension](https://github.com/github/gh-valet) to the official [GitHub CLI](https://cli.github.com) to interact with the Docker container.
 
-In order to run Valet, the following additional dependencies required:
+### Prerequisites
 
-- Docker
+The following requirements must be met to be able to run Valet:
+
+- The Docker CLI must be [installed](https://docs.docker.com/get-docker/) and running
+- The official [GitHub CLI](https://cli.github.com) must be installed
+- You must have credentials to [authenticate](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-to-the-container-registry) with the GitHub Container Registry after you are enrolled in the private preview.
 
 ### Installation
-
-First, you'll need to download the official [GitHub CLI](https://cli.github.com).
 
 Next, the Valet CLI extension can be installed via this command:
 
