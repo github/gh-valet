@@ -22,6 +22,12 @@ You can find detailed information about how Valet works for each of the supporte
 
 ## Getting started with the Valet CLI
 
+### Pre-Requisites
+
+In order to run Valet, the following additional dependencies required:
+
+- Docker
+
 ### Installation
 
 First, you'll need to download the official [GitHub CLI](https://cli.github.com).
