@@ -28,7 +28,7 @@ body:
     id: gh-version
     attributes:
       label: What version of the `gh-valet` extension are you using?
-      placeholder: i.e. the output of `gh extension list`
+      placeholder: i.e. the output of `gh extension list | grep valet`
     validations:
       required: true
   - type: textarea
