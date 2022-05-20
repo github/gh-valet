@@ -80,7 +80,7 @@ public class ProcessService : IProcessService
                 while ((current = reader.Read()) >= 0)
                 {
                     Console.Write((char)current);
-                }                    
+                }
             }
         }, ctx);
     }
