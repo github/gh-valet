@@ -61,7 +61,6 @@ public class ProcessService : IProcessService
         process.Exited += OnProcessExited;
         process.Start();
 
-        
         ReadStream(process.StandardOutput, output, cts.Token);
         ReadStream(process.StandardError, output, cts.Token);
 
