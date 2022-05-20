@@ -61,16 +61,14 @@ public class ProcessService : IProcessService
         process.Exited += OnProcessExited;
         process.Start();
 
-        if (output)
-        {
-            ReadStream(process.StandardOutput, cts.Token);
-            ReadStream(process.StandardError, cts.Token);
-        }
+        
+        ReadStream(process.StandardOutput, output, cts.Token);
+        ReadStream(process.StandardError, output, cts.Token);
 
         return tcs.Task;
     }
 
-    private void ReadStream(StreamReader reader, CancellationToken ctx)
+    private void ReadStream(StreamReader reader, bool output, CancellationToken ctx)
     {
         Task.Run(() =>
         {
@@ -79,7 +77,8 @@ public class ProcessService : IProcessService
                 int current;
                 while ((current = reader.Read()) >= 0)
                 {
-                    Console.Write((char)current);
+                    if (output)
+                        Console.Write((char)current);
                 }
             }
         }, ctx);
