@@ -16,8 +16,6 @@ public class Forecast : ContainerCommand
         Common.Organization,
         Common.InstanceUrl,
         Common.AccessToken,
-        Common.SourceGitHubInstanceUrl,
-        Common.SourceGitHubAccessToken,
         Common.SourceFilePath
     };
 }
