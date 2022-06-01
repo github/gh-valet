@@ -29,7 +29,7 @@ public class DockerService : IDockerService
         {
             password = await Console.In.ReadToEndAsync();
         }
-        
+
         if (!string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password))
         {
             await _processService.RunAsync(
@@ -78,7 +78,7 @@ public class DockerService : IDockerService
                 output: false
             );
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             throw new Exception("Please ensure docker is installed and the docker daemon is running");
         }

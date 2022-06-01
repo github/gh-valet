@@ -20,7 +20,7 @@ public class Update : BaseCommand
         Description = "Access token to authenticate with GHCR (requires read:packages scope).  Can optionally be set with GHCR_PASSWORD env variable.",
         IsRequired = false,
     };
-    
+
     private static readonly Option<bool> PasswordStdInOption = new(new[] { "--password-stdin" })
     {
         Description = "Access token from standard input to authenticate with GHCR (requires read:packages scope).",

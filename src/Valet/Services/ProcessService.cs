@@ -54,7 +54,7 @@ public class ProcessService : IProcessService
         ReadStream(process.StandardError, output, cts.Token);
 
         await process.WaitForExitAsync(cts.Token);
-        
+
         cts.Cancel();
         if (process.ExitCode != 0)
         {
