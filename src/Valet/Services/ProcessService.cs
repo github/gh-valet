@@ -11,7 +11,7 @@ public class ProcessService : IProcessService
         string? cwd = null,
         IEnumerable<(string, string)>? environmentVariables = null,
         bool output = true,
-        string? inputStringFromStdin = null)
+        string? inputForStdIn = null)
     {
         var cts = new CancellationTokenSource();
 
@@ -42,11 +42,11 @@ public class ProcessService : IProcessService
         };
         process.Start();
 
-        if (!string.IsNullOrWhiteSpace(inputStringFromStdin))
+        if (!string.IsNullOrWhiteSpace(inputForStdIn))
         {
             var writer = process.StandardInput;
             writer.AutoFlush = true;
-            await writer.WriteAsync(inputStringFromStdin);
+            await writer.WriteAsync(inputForStdIn);
             writer.Close();
         }
 

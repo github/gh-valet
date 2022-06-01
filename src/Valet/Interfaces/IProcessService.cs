@@ -8,6 +8,6 @@ public interface IProcessService
         string? cwd = null,
         IEnumerable<(string, string)>? environmentVariables = null,
         bool output = true,
-        string? inputStringFromStdin = null
+        string? inputForStdIn = null
     );
 }

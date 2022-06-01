@@ -35,7 +35,7 @@ public class DockerService : IDockerService
             await _processService.RunAsync(
                 "docker",
                 $"login {server} --username {username} --password-stdin",
-                inputStringFromStdin: password
+                inputForStdIn: password
             ).ConfigureAwait(false);
         }
         else
