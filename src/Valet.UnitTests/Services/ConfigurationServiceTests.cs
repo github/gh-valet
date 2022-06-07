@@ -31,14 +31,14 @@ public class ConfigurationServiceTests
             { "BAR", "current" },
             { "BAZ", "current" }
         };
-        
+
         var newVariables = new Dictionary<string, string>
         {
             { "FOO", "new" },
             { "BAR", "new" },
             { "BAN", "new" }
         };
-        
+
         var expectedVariables = new Dictionary<string, string>
         {
             { "FOO", "new" },
@@ -46,13 +46,13 @@ public class ConfigurationServiceTests
             { "BAZ", "current" },
             { "BAN", "new" },
         };
-        
+
         // Act
         var result = _configurationService.MergeVariables(
-            currentVariables, 
+            currentVariables,
             newVariables
             );
-        
+
         // Assert
         Assert.AreEqual(expectedVariables, result);
     }
@@ -89,10 +89,10 @@ WITH_QUOTES=""value""
             { "WITH_QUOTES", "\"value\"" },
             { "LEADING_SPACE", "value" },
         };
-        
+
         // Act
         var result = await _configurationService.ReadCurrentVariablesAsync(filePath);
-        
+
         // Assert
         Assert.AreEqual(expectedResult, result);
     }

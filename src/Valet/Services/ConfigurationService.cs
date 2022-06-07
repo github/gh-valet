@@ -27,15 +27,15 @@ public class ConfigurationService : IConfigurationService
     public Dictionary<string, string> GetUserInput()
     {
         var input = new Dictionary<string, string>();
-        
+
         foreach (var variable in Constants.UserInputVariables)
         {
-            var value = variable.EndsWith("TOKEN") 
-                ? Prompt.Password($"Enter value for '{variable}' (leave empty to skip)") 
+            var value = variable.EndsWith("TOKEN")
+                ? Prompt.Password($"Enter value for '{variable}' (leave empty to skip)")
                 : Prompt.Input<string>($"Enter value for '{variable}' (leave empty to skip)");
-            
+
             if (string.IsNullOrWhiteSpace(value)) continue;
-            
+
             input[variable] = value;
         }
 
