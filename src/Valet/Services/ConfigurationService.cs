@@ -1,4 +1,5 @@
 using System.Text;
+using Sharprompt;
 using Valet.Interfaces;
 
 namespace Valet.Services;
@@ -15,7 +16,7 @@ public class ConfigurationService : IConfigurationService
             if (string.IsNullOrWhiteSpace(line)) continue;
 
             var variable = line.Split('=', StringSplitOptions.TrimEntries);
-            if (variable.Length != 2) continue;
+            if (variable.Length != 2 || string.IsNullOrWhiteSpace(variable[1])) continue;
 
             variables[variable[0]] = variable[1];
         }
@@ -23,14 +24,16 @@ public class ConfigurationService : IConfigurationService
         return variables;
     }
 
-    public async Task<Dictionary<string, string>> GetUserInputAsync()
+    public Dictionary<string, string> GetUserInput()
     {
         var input = new Dictionary<string, string>();
-
+        
         foreach (var variable in Constants.UserInputVariables)
         {
-            Console.Write($"Enter value for '{variable}' (leave empty to omit): ");
-            var value = await Console.In.ReadLineAsync();
+            var value = variable.EndsWith("TOKEN") 
+                ? Prompt.Password($"Enter value for '{variable}' (leave empty to skip)") 
+                : Prompt.Input<string>($"Enter value for '{variable}' (leave empty to skip)");
+            
             if (string.IsNullOrWhiteSpace(value)) continue;
             
             input[variable] = value;
@@ -42,9 +45,6 @@ public class ConfigurationService : IConfigurationService
     public async Task WriteVariablesAsync(Dictionary<string, string> variables, string filePath = ".env.local")
     {
         var lines = variables.Select(kvp => $"{kvp.Key}={kvp.Value}").ToList();
-
-        Console.WriteLine(string.Join('\n', lines));
-        await Task.FromResult(true);
-        // await File.WriteAllLinesAsync(filePath, lines);
+        await File.WriteAllLinesAsync(filePath, lines);
     }
 }

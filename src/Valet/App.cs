@@ -56,7 +56,7 @@ public class App
     public async Task<int> ConfigureAsync()
     {
         var currentVariables = await _configurationService.ReadCurrentVariablesAsync().ConfigureAwait(false);
-        var newVariables = await _configurationService.GetUserInputAsync().ConfigureAwait(false);
+        var newVariables = _configurationService.GetUserInput();
         var mergedVariables = _configurationService.MergeVariables(currentVariables, newVariables);
         await _configurationService.WriteVariablesAsync(mergedVariables);
 
