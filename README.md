@@ -47,9 +47,6 @@ $ gh valet -h
 Description:
   Valet is a tool to help plan and facilitate migrations to GitHub Actions.
 
-Usage:
-  gh-valet [command] [options]
-
 Options:
   -?, -h, --help  Show help and usage information
 
@@ -101,9 +98,6 @@ $ gh valet audit -h
 Description:
   An audit will output a list of data used in a CI/CD instance.
 
-Usage:
-  gh-valet audit [command] [options]
-
 <omitted for brevity>
 
 Commands:
@@ -126,9 +120,6 @@ To run a forecast, use the following command to determine the options that are r
 $ gh valet forecast -h
 Description:
   Forecasts GitHub Actions usage from historical pipeline utilization.
-
-Usage:
-  gh-valet forecast [command] [options]
 
 <omitted for brevity>
 
@@ -153,9 +144,6 @@ $ gh valet dry-run -h
 Description:
   Convert a pipeline to a GitHub Actions workflow and output its yaml file.
 
-Usage:
-  gh-valet dry-run [command] [options]
-
 <omitted for brevity>
 
 Commands:
@@ -178,9 +166,6 @@ To run a migration, use the following command to determine the options that are 
 $ gh valet migrate -h
 Description:
   Convert a pipeline to a GitHub Actions workflow and open a pull request with the changes.
-
-Usage:
-  gh-valet migrate [command] [options]
 
 <omitted for brevity>
 
