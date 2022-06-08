@@ -96,7 +96,7 @@ public class DockerService : IDockerService
             yield return "--env-file .env.local";
         }
 
-        foreach (var env in Constants.EnvironmentVariables.Value)
+        foreach (var env in Constants.EnvironmentVariables)
         {
             var value = Environment.GetEnvironmentVariable(env);
 

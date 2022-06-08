@@ -26,17 +26,32 @@ public class ConfigurationService : IConfigurationService
 
     public Dictionary<string, string> GetUserInput()
     {
+        var providers = Prompt.MultiSelect(
+            "Which CI providers are you configuring?",
+            new[] { "Azure DevOps", "CircleCI", "GitLab CI", "Jenkins", "Travis CI" }, 
+            pageSize: 5
+        );
+
         var input = new Dictionary<string, string>();
 
-        foreach (var variable in Constants.UserInputVariables)
+        foreach (var provider in providers.Prepend("GitHub"))
         {
-            var value = variable.EndsWith("TOKEN")
-                ? Prompt.Password($"Enter value for '{variable}' (leave empty to skip)")
-                : Prompt.Input<string>($"Enter value for '{variable}' (leave empty to skip)");
+            if (string.IsNullOrWhiteSpace(provider)) continue;
 
-            if (string.IsNullOrWhiteSpace(value)) continue;
+            var variables = Constants.VariablesForProvider(provider);
 
-            input[variable] = value;
+            foreach (var variable in variables)
+            {
+                var value = variable.IsPassword
+                    ? Prompt.Password(variable.Message)
+                    : Prompt.Input<string>(variable.Message);
+
+                var variableValue = value ?? variable.DefaultValue;
+
+                if (string.IsNullOrWhiteSpace(variableValue)) continue;
+
+                input[variable.Key] = variableValue;
+            }
         }
 
         return input;
