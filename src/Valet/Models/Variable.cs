@@ -26,7 +26,7 @@ public readonly struct Variable
     public string HelpText { get; }
     public string? DefaultValue { get; }
 
-    public string Message => DefaultValue is null ? HelpText : $"{HelpText} (default value: '{DefaultValue}')";
+    public string Message => DefaultValue is null ? HelpText : $"{HelpText} ({DefaultValue})";
 
     private Provider Provider { get; }
 }
