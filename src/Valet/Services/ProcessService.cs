@@ -42,7 +42,7 @@ public class ProcessService : IProcessService
     {
         using var process = GetProcess(filename, arguments, cwd, environmentVariables);
         process.Start();
-        
+
         await process.WaitForExitAsync();
 
         if (process.ExitCode != 0 && throwOnError)

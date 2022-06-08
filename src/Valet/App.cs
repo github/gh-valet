@@ -9,7 +9,7 @@ public class App
 
     private readonly IDockerService _dockerService;
     private readonly IProcessService _processService;
-    
+
     public App(IDockerService dockerService, IProcessService processService)
     {
         _dockerService = dockerService;
@@ -57,7 +57,7 @@ public class App
     {
         var ghVersion = await _processService.RunAndCaptureAsync("gh", "version");
         var ghValetVersion = await _processService.RunAndCaptureAsync("gh", "extension list");
-        var valetVersion = await _processService.RunAndCaptureAsync("docker", $"run --rm {ValetContainerRegistry}/{ValetImage}:latest version", throwOnError:false);
+        var valetVersion = await _processService.RunAndCaptureAsync("docker", $"run --rm {ValetContainerRegistry}/{ValetImage}:latest version", throwOnError: false);
 
         var formattedGhVersion = ghVersion.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).FirstOrDefault();
         var formattedGhValetVersion = ghValetVersion.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)

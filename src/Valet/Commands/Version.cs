@@ -11,7 +11,7 @@ public class Version : BaseCommand
     protected override Command GenerateCommand(App app)
     {
         var command = base.GenerateCommand(app);
-        
+
         command.Handler = CommandHandler.Create(app.GetVersionAsync);
 
         return command;

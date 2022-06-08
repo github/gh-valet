@@ -12,7 +12,7 @@ public interface IProcessService
     );
 
     Task<string> RunAndCaptureAsync(
-        string filename, 
+        string filename,
         string arguments,
         string? cwd = null,
         IEnumerable<(string, string)>? environmentVariables = null,
