@@ -9,18 +9,18 @@ public readonly struct Variable
         HelpText = helpText;
         DefaultValue = defaultValue;
     }
-    
+
     public string Key { get; }
     public string ProviderName => Provider switch
-            {
-                Provider.GitHub => "GitHub",
-                Provider.AzureDevOps => "Azure DevOps",
-                Provider.CircleCI => "CircleCI",
-                Provider.GitLabCI => "GitLab CI",
-                Provider.Jenkins => "Jenkins",
-                Provider.TravisCI => "Travis CI",
-                _ => throw new ArgumentOutOfRangeException()
-            };
+    {
+        Provider.GitHub => "GitHub",
+        Provider.AzureDevOps => "Azure DevOps",
+        Provider.CircleCI => "CircleCI",
+        Provider.GitLabCI => "GitLab CI",
+        Provider.Jenkins => "Jenkins",
+        Provider.TravisCI => "Travis CI",
+        _ => throw new ArgumentOutOfRangeException()
+    };
 
     public bool IsPassword => Key.EndsWith("ACCESS_TOKEN");
     public string HelpText { get; }

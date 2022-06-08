@@ -15,21 +15,21 @@ public class VariableTests
     public void ProviderName_ValidName_ReturnsExpected(Provider provider, string providerName)
     {
         // Arrange
-        var variable = new Variable( "FOO", provider, "");
-        
+        var variable = new Variable("FOO", provider, "");
+
         // Act
-        Assert.AreEqual(providerName, variable.ProviderName);        
+        Assert.AreEqual(providerName, variable.ProviderName);
     }
-    
+
     [TestCase("USERNAME", false)]
     [TestCase("PERSONAL_ACCESS_TOKEN", true)]
     public void IsPassword_ReturnsExpected(string key, bool isPassword)
     {
         // Arrange
         var variable = new Variable(key, Provider.GitHub, "");
-        
+
         // Act
-        Assert.AreEqual(isPassword, variable.IsPassword);        
+        Assert.AreEqual(isPassword, variable.IsPassword);
     }
 
     [TestCase("Personal access token for GitHub", null, "Personal access token for GitHub")]
@@ -38,7 +38,7 @@ public class VariableTests
     {
         // Arrange
         var variable = new Variable("FOO", Provider.GitHub, helpText, defaultValue);
-        
+
         // Act
         Assert.AreEqual(expectedMessage, variable.Message);
     }
