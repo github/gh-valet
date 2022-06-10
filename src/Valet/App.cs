@@ -9,11 +9,13 @@ public class App
 
     private readonly IDockerService _dockerService;
     private readonly IProcessService _processService;
+    private readonly IConfigurationService _configurationService;
 
-    public App(IDockerService dockerService, IProcessService processService)
+    public App(IDockerService dockerService, IProcessService processService, IConfigurationService configurationService)
     {
         _dockerService = dockerService;
         _processService = processService;
+        _configurationService = configurationService;
     }
 
     public async Task<int> UpdateValetAsync(string? username = null, string? password = null, bool passwordStdin = false)
@@ -67,7 +69,16 @@ public class App
         Console.WriteLine(formattedGhVersion);
         Console.WriteLine(formattedGhValetVersion);
         Console.WriteLine($"valet-cli\t{formattedValetVersion}");
+    }
 
+    public async Task<int> ConfigureAsync()
+    {
+        var currentVariables = await _configurationService.ReadCurrentVariablesAsync().ConfigureAwait(false);
+        var newVariables = _configurationService.GetUserInput();
+        var mergedVariables = _configurationService.MergeVariables(currentVariables, newVariables);
+        await _configurationService.WriteVariablesAsync(mergedVariables);
+
+        Console.WriteLine("Environment variables successfully updated.");
         return 0;
     }
 }
