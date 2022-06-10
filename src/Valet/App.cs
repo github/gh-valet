@@ -69,6 +69,8 @@ public class App
         Console.WriteLine(formattedGhVersion);
         Console.WriteLine(formattedGhValetVersion);
         Console.WriteLine($"valet-cli\t{formattedValetVersion}");
+
+        return 0;
     }
 
     public async Task<int> ConfigureAsync()

@@ -11,7 +11,7 @@ var processService = new ProcessService();
 
 var app = new App(
     new DockerService(processService),
-    processService
+    processService,
     new ConfigurationService()
 );
 
