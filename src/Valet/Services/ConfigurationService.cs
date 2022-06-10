@@ -34,6 +34,8 @@ public class ConfigurationService : IConfigurationService
 
         var input = new Dictionary<string, string>();
 
+        Console.WriteLine("Enter the following values (leave empty to omit):");
+
         foreach (var provider in providers.Prepend("GitHub"))
         {
             if (string.IsNullOrWhiteSpace(provider)) continue;
