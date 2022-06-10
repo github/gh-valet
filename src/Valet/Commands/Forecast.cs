@@ -34,13 +34,13 @@ public class Forecast : BaseCommand
     protected override Command GenerateCommand(App app)
     {
         var command = base.GenerateCommand(app);
-        command = Common.AppendGeneralRequiredOptions(command);
+        command.AppendGeneralRequiredOptions();
 
         command.AddGlobalOption(StartDate);
         command.AddGlobalOption(TimeSlice);
         command.AddGlobalOption(SourceFilePath);
 
-        command = Common.AppendGeneralOptions(command);
+        command.AppendGeneralOptions();
 
         command.AddCommand(new AzureDevOps.Forecast(_args).Command(app));
         command.AddCommand(new Jenkins.Forecast(_args).Command(app));

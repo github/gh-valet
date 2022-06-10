@@ -6,7 +6,7 @@ namespace Valet.Commands;
 public static class Common
 {
 
-    public static Command AppendTransformerOptions(Command command)
+    public static Command AppendTransformerOptions(this Command command)
     {
         command.AddGlobalOption(
             new Option<string[]>(new[] { "--allowed-actions" })
@@ -54,7 +54,7 @@ public static class Common
         return command;
     }
 
-    public static Command AppendGeneralOptions(Command command)
+    public static Command AppendGeneralOptions(this Command command)
     {
         command.AddGlobalOption(
             new Option<string>(new[] { "--credentials-file" })
@@ -87,7 +87,7 @@ public static class Common
         return command;
     }
 
-    public static Command AppendGeneralRequiredOptions(Command command)
+    public static Command AppendGeneralRequiredOptions(this Command command)
     {
         command.AddGlobalOption(
             new Option<DirectoryInfo>(new[] { "--output-dir", "-o" })
@@ -100,12 +100,10 @@ public static class Common
         return command;
     }
 
-    public static Command AppendCommonOptions(Command command)
+    public static void AppendCommonOptions(this Command command)
     {
-        command = AppendGeneralRequiredOptions(command);
-        command = AppendTransformerOptions(command);
-        command = AppendGeneralOptions(command);
-
-        return command;
+        command.AppendGeneralRequiredOptions()
+               .AppendTransformerOptions()
+               .AppendGeneralOptions();
     }
 }
