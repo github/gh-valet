@@ -46,7 +46,7 @@ public class App
             ValetContainerRegistry,
             "latest"
         ).ConfigureAwait(false);
-        
+
         await _dockerService.ExecuteCommandAsync(
             ValetImage,
             ValetContainerRegistry,
