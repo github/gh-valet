@@ -1,4 +1,5 @@
 using Valet.Interfaces;
+using Valet.Models;
 
 namespace Valet;
 
@@ -41,12 +42,12 @@ public class App
             ValetContainerRegistry,
             "latest"
         ).ConfigureAwait(false);
-
+        
         await _dockerService.ExecuteCommandAsync(
             ValetImage,
             ValetContainerRegistry,
             "latest",
-            args
+            args.Select(x => x.EscapeIfNeeded()).ToArray()
         );
         return 0;
     }
