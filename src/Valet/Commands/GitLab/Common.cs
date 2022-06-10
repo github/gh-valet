@@ -14,6 +14,7 @@ public static class Common
     {
         Description = "The GitLab namespace(s).",
         IsRequired = false,
+        AllowMultipleArgumentsPerToken = true
     };
 
     public static readonly Option<string> AccessToken = new("--gitlab-access-token")
