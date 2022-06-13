@@ -43,7 +43,6 @@ public static class Common
             }
         );
 
-        // TODO: Add in enum values
         command.AddGlobalOption(
             new Option<string>(new[] { "--features" })
             {
