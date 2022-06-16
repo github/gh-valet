@@ -8,7 +8,7 @@ public static class Constants
     {
         new Variable("GITHUB_ACCESS_TOKEN", Provider.GitHub, "Personal access token for GitHub"),
         new Variable("GITHUB_INSTANCE_URL", Provider.GitHub, "Base url of the GitHub instance", "https://github.com"),
-        new Variable("AZURE_DEVOPS_ACCESS_TOKEN", Provider.AzureDevOps, "Personal Access Token for Azure DevOps"),
+        new Variable("AZURE_DEVOPS_ACCESS_TOKEN", Provider.AzureDevOps, "Personal access token for Azure DevOps"),
         new Variable("AZURE_DEVOPS_INSTANCE_URL", Provider.AzureDevOps, "Base url of the Azure DevOps instance", "https://dev.azure.com"),
         new Variable("AZURE_DEVOPS_ORGANIZATION", Provider.AzureDevOps, "Azure DevOps organization name"),
         new Variable("AZURE_DEVOPS_PROJECT", Provider.AzureDevOps, "Azure DevOps project name"),
