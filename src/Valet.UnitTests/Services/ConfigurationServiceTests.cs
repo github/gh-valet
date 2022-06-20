@@ -62,7 +62,7 @@ public class ConfigurationServiceTests
     {
         // Arrange
         var expectedResult = new Dictionary<string, string>();
-        
+
         // Act
         var result = await _configurationService.ReadCurrentVariablesAsync("this-does-not-exist");
 
