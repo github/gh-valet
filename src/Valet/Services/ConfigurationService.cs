@@ -12,7 +12,7 @@ public class ConfigurationService : IConfigurationService
 
         if (!File.Exists(filePath))
             return variables;
-            
+
         var lines = await File.ReadAllLinesAsync(filePath);
 
         foreach (var line in lines)
