@@ -23,6 +23,6 @@ public class Forecast : ContainerCommand
         Common.Organization,
         Common.InstanceUrl,
         Common.AccessToken,
-        Common.SourceFilePath
+        SourceFilePath
     };
 }
