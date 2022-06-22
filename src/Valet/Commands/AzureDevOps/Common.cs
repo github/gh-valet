@@ -33,4 +33,11 @@ public static class Common
         Description = "The Azure DevOps pipeline id.",
         IsRequired = true,
     };
+
+    public static readonly Option<FileInfo[]> SourceFilePath = new("--source-file-path")
+    {
+        Description = "The file path(s) to existing jobs data.",
+        IsRequired = false,
+        AllowMultipleArgumentsPerToken = true,
+    };
 }

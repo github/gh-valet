@@ -15,6 +15,7 @@ public class Forecast : ContainerCommand
     {
         Common.Namespace,
         Common.InstanceUrl,
-        Common.AccessToken
+        Common.AccessToken,
+        Common.SourceFilePath
     };
 }

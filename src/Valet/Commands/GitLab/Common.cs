@@ -23,10 +23,11 @@ public static class Common
         IsRequired = false,
     };
 
-    public static readonly Option<FileInfo> SourceFilePath = new("--source-file-path")
+    public static readonly Option<FileInfo[]> SourceFilePath = new("--source-file-path")
     {
-        Description = "The file path corresponding to the GitLab CI workflow file.",
+        Description = "The file path(s) to existing jobs data.",
         IsRequired = false,
+        AllowMultipleArgumentsPerToken = true,
     };
 
     public static readonly Option<string> Project = new("--project")
