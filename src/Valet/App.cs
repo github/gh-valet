@@ -74,6 +74,23 @@ public class App
         return 0;
     }
 
+    public void CheckForUpdates()
+    {
+        try
+        {
+            var latestImageDigest = _dockerService.GetLatestImageDigestAsync(ValetImage, ValetContainerRegistry)?.Result;
+            var currentImageDigest = _dockerService.GetCurrentImageDigestAsync(ValetImage, ValetContainerRegistry).Result;
+            if (latestImageDigest != null && currentImageDigest != null && !latestImageDigest.Equals(currentImageDigest))
+            {
+                Console.WriteLine("A new version of the Valet CLI is available. Run 'gh valet update' to update.");
+            }
+        }
+        catch (Exception)
+        {
+            // Ignore for now
+        }
+    }
+
     public async Task<int> ConfigureAsync()
     {
         var currentVariables = await _configurationService.ReadCurrentVariablesAsync().ConfigureAwait(false);

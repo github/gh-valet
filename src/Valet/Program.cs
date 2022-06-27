@@ -45,6 +45,10 @@ var parser = new CommandLineBuilder(command)
 
 try
 {
+    if (!Array.Exists(args, x => x == "update"))
+    {
+        app.CheckForUpdates();
+    }
     await parser.InvokeAsync(args);
     return 0;
 }
