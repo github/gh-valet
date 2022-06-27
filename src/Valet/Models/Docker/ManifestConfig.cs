@@ -1,8 +1,15 @@
+using System.Text.Json.Serialization;
+
 namespace Valet.Models.Docker;
 
 public class ManifestConfig
 {
-    public string? mediaType { get; set; }
-    public int size { get; set; }
-    public string? digest { get; set; }
+    [JsonPropertyName("mediaType")]
+    public string? MediaType { get; set; }
+
+    [JsonPropertyName("size")]
+    public int Size { get; set; }
+
+    [JsonPropertyName("digest")]
+    public string? Digest { get; set; }
 }

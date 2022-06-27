@@ -99,11 +99,11 @@ public class DockerService : IDockerService
         return manifest?.GetDigest();
     }
 
-    public async Task<string> GetCurrentImageDigestAsync(string image, string server)
+    public async Task<string?> GetCurrentImageDigestAsync(string image, string server)
     {
         var digestOutput = await _processService.RunAndCaptureAsync("docker", $"image inspect --format={{{{.Id}}}} {server}/{image}:latest");
 
-        return digestOutput.Split(":")[1].Trim();
+        return digestOutput.Split(":").ElementAtOrDefault(1)?.Trim();
     }
 
     private IEnumerable<string> GetEnvironmentVariableArguments()

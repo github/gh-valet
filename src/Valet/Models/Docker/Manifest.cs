@@ -1,16 +1,24 @@
 using System.Collections;
+using System.Text.Json.Serialization;
 
 namespace Valet.Models.Docker;
 
 public class Manifest
 {
-    public int schemaVersion { get; set; }
-    public string? mediaType { get; set; }
-    public ManifestConfig? config { get; set; }
-    public List<ManifestConfig>? layers { get; set; }
+    [JsonPropertyName("schemaVersion")]
+    public int SchemaVersion { get; set; }
+
+    [JsonPropertyName("mediaType")]
+    public string? MediaType { get; set; }
+
+    [JsonPropertyName("config")]
+    public ManifestConfig? Config { get; set; }
+
+    [JsonPropertyName("layers")]
+    public List<ManifestConfig>? Layers { get; set; }
 
     public string? GetDigest()
     {
-        return config?.digest?.Split(':')[1].Trim();
+        return Config?.Digest?.Split(':').ElementAtOrDefault(1)?.Trim();
     }
 }

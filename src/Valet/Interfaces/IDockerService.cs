@@ -12,5 +12,5 @@ public interface IDockerService
 
     Task<string?> GetLatestImageDigestAsync(string image, string server);
 
-    Task<string> GetCurrentImageDigestAsync(string image, string server);
+    Task<string?> GetCurrentImageDigestAsync(string image, string server);
 }

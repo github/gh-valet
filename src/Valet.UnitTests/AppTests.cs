@@ -44,9 +44,11 @@ public class AppTests
         ).Returns(Task.FromResult(latestImage));
 #pragma warning restore CS8620
 
+#pragma warning disable CS8620 // I don't care that this method return is nullable
         _dockerService.Setup(handler =>
             handler.GetCurrentImageDigestAsync(image, server)
         ).Returns(Task.FromResult(currentImage));
+#pragma warning restore CS8620
 
         // Act
         _app.CheckForUpdates();

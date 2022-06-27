@@ -47,7 +47,7 @@ try
 {
     if (!Array.Exists(args, x => x == "update"))
     {
-        app.CheckForUpdates();
+        await app.CheckForUpdates();
     }
     await parser.InvokeAsync(args);
     return 0;

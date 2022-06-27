@@ -70,11 +70,11 @@ public class ManifestTests
     {
         Manifest? manifest = JsonSerializer.Deserialize<Manifest>(manifestResult);
 
-        Assert.AreEqual(2, manifest?.schemaVersion);
-        Assert.AreEqual("application/vnd.docker.distribution.manifest.v2+json", manifest?.mediaType);
-        Assert.IsInstanceOf(typeof(ManifestConfig), manifest?.config);
-        Assert.AreEqual(9, manifest?.layers?.Count);
-        Assert.IsInstanceOf(typeof(ManifestConfig), manifest?.layers?[0]);
+        Assert.AreEqual(2, manifest?.SchemaVersion);
+        Assert.AreEqual("application/vnd.docker.distribution.manifest.v2+json", manifest?.MediaType);
+        Assert.IsInstanceOf(typeof(ManifestConfig), manifest?.Config);
+        Assert.AreEqual(9, manifest?.Layers?.Count);
+        Assert.IsInstanceOf(typeof(ManifestConfig), manifest?.Layers?[0]);
     }
 
     [Test]
