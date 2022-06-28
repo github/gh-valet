@@ -74,7 +74,7 @@ public class App
         return 0;
     }
 
-    public async Task CheckForUpdates()
+    public async Task CheckForUpdatesAsync()
     {
         try
         {

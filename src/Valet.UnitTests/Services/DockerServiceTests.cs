@@ -279,7 +279,7 @@ public class DockerServiceTests
     }
 
     [Test]
-    public void GetCurrentImageDigest_ParsesDigestCorrectly()
+    public async Task GetCurrentImageDigest_ParsesDigestCorrectly()
     {
         // Arrange
         var image = "valet-customers/valet-cli";
@@ -296,15 +296,15 @@ public class DockerServiceTests
         ).Returns(Task.FromResult("sha256:67eed1493c461efd993be9777598a456562f4e0c6b0bddcb19d819220a06dd4b"));
 
         // Act
-        var result = _dockerService.GetCurrentImageDigestAsync(image, server);
+        var result = await _dockerService.GetCurrentImageDigestAsync(image, server);
 
-        // Act, Assert
-        Assert.AreEqual("67eed1493c461efd993be9777598a456562f4e0c6b0bddcb19d819220a06dd4b", result.Result);
+        // Assert
+        Assert.AreEqual("67eed1493c461efd993be9777598a456562f4e0c6b0bddcb19d819220a06dd4b", result);
         _processService.VerifyAll();
     }
 
     [Test]
-    public void GetLatestImageDigest_ParsesDigestCorrectly()
+    public async Task GetLatestImageDigest_ParsesDigestCorrectly()
     {
         // Arrange
         var image = "valet-customers/valet-cli";
@@ -378,10 +378,10 @@ public class DockerServiceTests
         ).Returns(Task.FromResult(manifestResult));
 
         // Act
-        var result = _dockerService.GetLatestImageDigestAsync(image, server);
+        var result = await _dockerService.GetLatestImageDigestAsync(image, server);
 
-        // Act, Assert
-        Assert.AreEqual("4256ea72fd01deac3e967f6b19f907587dcd6f0a976301f1aecc73dc6f146a4a", result.Result);
+        // Assert
+        Assert.AreEqual("4256ea72fd01deac3e967f6b19f907587dcd6f0a976301f1aecc73dc6f146a4a", result);
         _processService.VerifyAll();
     }
 }
