@@ -40,11 +40,11 @@ public class AppTests
 
         _dockerService.Setup(handler =>
             handler.GetLatestImageDigestAsync(image, server)
-        ).Returns(Task.FromResult(latestImage));
+        ).ReturnsAsync(latestImage);
 
         _dockerService.Setup(handler =>
             handler.GetCurrentImageDigestAsync(image, server)
-        ).Returns(Task.FromResult(currentImage));
+        ).ReturnsAsync(currentImage);
 
         // Act
         await _app.CheckForUpdatesAsync();

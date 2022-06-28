@@ -293,7 +293,7 @@ public class DockerServiceTests
                 It.IsAny<IEnumerable<(string, string)>?>(),
                 It.IsAny<bool>()
             )
-        ).Returns(Task.FromResult("sha256:67eed1493c461efd993be9777598a456562f4e0c6b0bddcb19d819220a06dd4b"));
+        ).ReturnsAsync("sha256:67eed1493c461efd993be9777598a456562f4e0c6b0bddcb19d819220a06dd4b");
 
         // Act
         var result = await _dockerService.GetCurrentImageDigestAsync(image, server);
@@ -375,7 +375,7 @@ public class DockerServiceTests
                 It.IsAny<IEnumerable<(string, string)>?>(),
                 It.IsAny<bool>()
             )
-        ).Returns(Task.FromResult(manifestResult));
+        ).ReturnsAsync(manifestResult);
 
         // Act
         var result = await _dockerService.GetLatestImageDigestAsync(image, server);
