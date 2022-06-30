@@ -51,7 +51,7 @@ public class DockerService : IDockerService
         {
             valetArguments.Add(dockerArgs);
         }
-        
+
         valetArguments.Add($"-v \"{Directory.GetCurrentDirectory()}\":/data");
         valetArguments.Add($"{server}/{image}:{version}");
         valetArguments.AddRange(arguments);

@@ -200,7 +200,7 @@ public class DockerServiceTests
         // Assert
         _processService.VerifyAll();
     }
-    
+
     [Test]
     public async Task ExecuteCommandAsync_InvokesDocker_WithAdditionalDockerArguments_ReturnsTrue()
     {
