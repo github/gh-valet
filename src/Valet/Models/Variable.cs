@@ -1,6 +1,6 @@
 namespace Valet.Models;
 
-public readonly struct Variable
+public readonly struct Variable : IEquatable<Variable>
 {
     public Variable(string key, Provider provider, string message, string? defaultValue = null)
     {
@@ -29,4 +29,32 @@ public readonly struct Variable
     public string? Placeholder => DefaultValue is not null && IsPassword ? $"({DefaultValue})" : null;
 
     private Provider Provider { get; }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Variable v && Equals(v);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Key, Provider, Message, DefaultValue);
+    }
+
+    public static bool operator ==(Variable left, Variable right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(Variable left, Variable right)
+    {
+        return !(left == right);
+    }
+
+    public bool Equals(Variable other)
+    {
+        return Key == other.Key &&
+            Provider == other.Provider &&
+            Message == other.Message &&
+            DefaultValue == other.DefaultValue;
+    }
 }
