@@ -6,6 +6,6 @@ public static class StringExtensions
     {
         ArgumentNullException.ThrowIfNull(str);
 
-        return !str.Contains(' ') ? str : $"\"{str}\"";
+        return !str.Contains(' ', StringComparison.Ordinal) ? str : $"\"{str}\"";
     }
 }

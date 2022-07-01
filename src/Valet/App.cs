@@ -64,7 +64,7 @@ public class App
 
         var formattedGhVersion = ghVersion.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).FirstOrDefault();
         var formattedGhValetVersion = ghValetVersion.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-            .FirstOrDefault(x => x.Contains("github/gh-valet"));
+            .FirstOrDefault(x => x.Contains("github/gh-valet", StringComparison.Ordinal));
         var formattedValetVersion = valetVersion.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).FirstOrDefault() ?? "unknown";
 
         Console.WriteLine(formattedGhVersion);
@@ -86,7 +86,7 @@ public class App
             var latestImageDigest = latestImageDigestTask?.Result;
             var currentImageDigest = currentImageDigestTask?.Result;
 
-            if (latestImageDigest != null && currentImageDigest != null && !latestImageDigest.Equals(currentImageDigest))
+            if (latestImageDigest != null && currentImageDigest != null && !latestImageDigest.Equals(currentImageDigest, StringComparison.Ordinal))
             {
                 Console.WriteLine("A new version of the Valet CLI is available. Run 'gh valet update' to update.");
             }
