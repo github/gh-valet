@@ -106,7 +106,7 @@ public class DockerService : IDockerService
         return digestOutput.Split(":").ElementAtOrDefault(1)?.Trim();
     }
 
-    private IEnumerable<string> GetEnvironmentVariableArguments()
+    private static IEnumerable<string> GetEnvironmentVariableArguments()
     {
         if (File.Exists(".env.local"))
         {

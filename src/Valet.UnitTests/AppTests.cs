@@ -35,7 +35,7 @@ public class AppTests
         var image = "valet-customers/valet-cli";
         var server = "ghcr.io";
 
-        var stringWriter = new StringWriter();
+        using var stringWriter = new StringWriter();
         Console.SetOut(stringWriter);
 
         _dockerService.Setup(handler =>
@@ -61,7 +61,7 @@ public class AppTests
         var image = "valet-customers/valet-cli";
         var server = "ghcr.io";
 
-        var stringWriter = new StringWriter();
+        using var stringWriter = new StringWriter();
         Console.SetOut(stringWriter);
 
         _dockerService.Setup(handler =>
