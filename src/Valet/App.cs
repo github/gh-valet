@@ -93,7 +93,8 @@ public class App
         }
         catch (Exception)
         {
-            // Ignore for now
+            // Let's catch and ignore any exceptions here. We don't want to kill Valet if we failed to check for updates
+            // We can add reporting here in the future to alert us of any issues
         }
     }
 
