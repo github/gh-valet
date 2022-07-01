@@ -8,6 +8,9 @@ public interface IConfigurationService
 
     Dictionary<string, string> MergeVariables(Dictionary<string, string> currentVariables, Dictionary<string, string> newVariables)
     {
+        ArgumentNullException.ThrowIfNull(currentVariables);
+        ArgumentNullException.ThrowIfNull(newVariables);
+
         foreach (var variable in newVariables)
         {
             currentVariables[variable.Key] = variable.Value;

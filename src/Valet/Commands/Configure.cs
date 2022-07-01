@@ -10,6 +10,8 @@ public class Configure : BaseCommand
 
     protected override Command GenerateCommand(App app)
     {
+        ArgumentNullException.ThrowIfNull(app);
+
         var command = base.GenerateCommand(app);
 
         command.Handler = CommandHandler.Create(app.ConfigureAsync);
