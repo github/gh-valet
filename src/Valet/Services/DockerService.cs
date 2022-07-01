@@ -120,8 +120,8 @@ public class DockerService : IDockerService
             if (string.IsNullOrWhiteSpace(value)) continue;
 
             var key = env;
-            if (key.StartsWith("GH_"))
-                key = key.Replace("GH_", "GITHUB_");
+            if (key.StartsWith("GH_", StringComparison.Ordinal))
+                key = key.Replace("GH_", "GITHUB_", StringComparison.Ordinal);
 
             yield return $"--env {key}={value}";
         }
