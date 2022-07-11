@@ -36,6 +36,7 @@ public class AppTests
         var server = "ghcr.io";
 
         using var stringWriter = new StringWriter();
+        var out = Console.Out;
         Console.SetOut(stringWriter);
 
         _dockerService.Setup(handler =>
@@ -52,6 +53,7 @@ public class AppTests
         // Assert
         Assert.AreEqual(result, stringWriter.ToString());
         _processService.VerifyAll();
+        Console.SetOut(out);
     }
 
     [Test]
@@ -62,6 +64,7 @@ public class AppTests
         var server = "ghcr.io";
 
         using var stringWriter = new StringWriter();
+        var out = Console.Out;
         Console.SetOut(stringWriter);
 
         _dockerService.Setup(handler =>
@@ -74,5 +77,6 @@ public class AppTests
         // Assert
         Assert.AreEqual("", stringWriter.ToString());
         _processService.VerifyAll();
+        Console.SetOut(out);
     }
 }
