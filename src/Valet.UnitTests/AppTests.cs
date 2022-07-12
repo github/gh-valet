@@ -16,6 +16,7 @@ public class AppTests
     private Mock<IDockerService> _dockerService;
     private Mock<IConfigurationService> _configurationService;
     private App _app;
+    private TextWriter _out;
 #pragma warning restore CS8618
 
     [SetUp]
@@ -25,6 +26,13 @@ public class AppTests
         _processService = new Mock<IProcessService>();
         _configurationService = new Mock<IConfigurationService>();
         _app = new App(_dockerService.Object, _processService.Object, _configurationService.Object);
+        _out = Console.Out;
+    }
+
+    [TearDown]
+    public void AfterEachTest()
+    {
+        Console.SetOut(_out);
     }
 
     [TestCase("4256ea72fd01deac3e967f6b19f907587dcd6f0a976301f1aecc73dc6f146a4a", "4256ea72fd01deac3e967f6b19f907587dcd6f0a976301f1aecc73dc6f146a4a", "")]
@@ -36,7 +44,6 @@ public class AppTests
         var server = "ghcr.io";
 
         using var stringWriter = new StringWriter();
-        var out = Console.Out;
         Console.SetOut(stringWriter);
 
         _dockerService.Setup(handler =>
@@ -53,7 +60,6 @@ public class AppTests
         // Assert
         Assert.AreEqual(result, stringWriter.ToString());
         _processService.VerifyAll();
-        Console.SetOut(out);
     }
 
     [Test]
@@ -64,7 +70,6 @@ public class AppTests
         var server = "ghcr.io";
 
         using var stringWriter = new StringWriter();
-        var out = Console.Out;
         Console.SetOut(stringWriter);
 
         _dockerService.Setup(handler =>
@@ -77,6 +82,5 @@ public class AppTests
         // Assert
         Assert.AreEqual("", stringWriter.ToString());
         _processService.VerifyAll();
-        Console.SetOut(out);
     }
 }

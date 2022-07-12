@@ -83,8 +83,8 @@ public class App
 
             await Task.WhenAll(latestImageDigestTask, currentImageDigestTask);
 
-            var latestImageDigest = latestImageDigestTask?.Result;
-            var currentImageDigest = currentImageDigestTask?.Result;
+            var latestImageDigest = await latestImageDigestTask;
+            var currentImageDigest = await currentImageDigestTask;
 
             if (latestImageDigest != null && currentImageDigest != null && !latestImageDigest.Equals(currentImageDigest, StringComparison.Ordinal))
             {
