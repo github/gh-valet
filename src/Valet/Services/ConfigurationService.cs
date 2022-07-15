@@ -1,4 +1,4 @@
-using Sharprompt;
+﻿using Sharprompt;
 using Valet.Interfaces;
 
 namespace Valet.Services;
