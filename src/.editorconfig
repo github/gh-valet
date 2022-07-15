@@ -61,6 +61,9 @@ dotnet_diagnostic.IDE0011.severity = none
 # IDE0130: Namespace does not match folder structure
 dotnet_diagnostic.IDE0130.severity = none
 
+# JSON002: Probable JSON string detected
+dotnet_diagnostic.JSON002.severity = none
+
 
 # CA2007: Consider calling ConfigureAwait on the awaited task
 dotnet_diagnostic.CA2007.severity = none
