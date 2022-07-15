@@ -7,7 +7,7 @@ namespace Valet.UnitTests;
 [TestFixture]
 public class ManifestTests
 {
-    private readonly string manifestResult = /*lang=json,strict*/ @"
+    private readonly string manifestResult = @"
 {
         ""schemaVersion"": 2,
         ""mediaType"": ""application/vnd.docker.distribution.manifest.v2+json"",
