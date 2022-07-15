@@ -309,7 +309,7 @@ public class DockerServiceTests
         // Arrange
         var image = "valet-customers/valet-cli";
         var server = "ghcr.io";
-        var manifestResult = /*lang=json,strict*/ @"
+        var manifestResult = @"
 {
         ""schemaVersion"": 2,
         ""mediaType"": ""application/vnd.docker.distribution.manifest.v2+json"",
