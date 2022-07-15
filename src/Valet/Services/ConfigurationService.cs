@@ -1,4 +1,3 @@
-using System.Text;
 using Sharprompt;
 using Valet.Interfaces;
 

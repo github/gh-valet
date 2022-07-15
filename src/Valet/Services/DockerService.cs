@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Text.Json;
 using Valet.Interfaces;
 using Valet.Models.Docker;

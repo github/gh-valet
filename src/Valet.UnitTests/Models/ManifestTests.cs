@@ -1,5 +1,4 @@
 using System.Text.Json;
-using Moq;
 using NUnit.Framework;
 using Valet.Models.Docker;
 
@@ -8,7 +7,7 @@ namespace Valet.UnitTests;
 [TestFixture]
 public class ManifestTests
 {
-    private string manifestResult = @"
+    private readonly string manifestResult = /*lang=json,strict*/ @"
 {
         ""schemaVersion"": 2,
         ""mediaType"": ""application/vnd.docker.distribution.manifest.v2+json"",

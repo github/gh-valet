@@ -148,7 +148,7 @@ public class DockerServiceTests
                 "docker",
                 $"run --rm -t -v \"{Directory.GetCurrentDirectory()}\":/data {server}/{image}:{version} {string.Join(' ', arguments)}",
                 Directory.GetCurrentDirectory(),
-                new[] { new System.ValueTuple<string, string>("MSYS_NO_PATHCONV", "1") },
+                new[] { new ValueTuple<string, string>("MSYS_NO_PATHCONV", "1") },
                 true,
                 null
             )
@@ -179,7 +179,7 @@ public class DockerServiceTests
                 "docker",
                 $"run --rm -t --env GITHUB_ACCESS_TOKEN=foo --env GITHUB_INSTANCE_URL=https://github.fabrikam.com --env JENKINS_ACCESS_TOKEN=bar -v \"{Directory.GetCurrentDirectory()}\":/data {server}/{image}:{version} {string.Join(' ', arguments)}",
                 Directory.GetCurrentDirectory(),
-                new[] { new System.ValueTuple<string, string>("MSYS_NO_PATHCONV", "1") },
+                new[] { new ValueTuple<string, string>("MSYS_NO_PATHCONV", "1") },
                 true,
                 null
             )
@@ -309,7 +309,7 @@ public class DockerServiceTests
         // Arrange
         var image = "valet-customers/valet-cli";
         var server = "ghcr.io";
-        var manifestResult = @"
+        var manifestResult = /*lang=json,strict*/ @"
 {
         ""schemaVersion"": 2,
         ""mediaType"": ""application/vnd.docker.distribution.manifest.v2+json"",

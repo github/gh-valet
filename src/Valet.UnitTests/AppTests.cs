@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
 using Valet.Interfaces;
-using Valet.Services;
 
 namespace Valet.UnitTests;
 

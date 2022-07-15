@@ -5,8 +5,8 @@ namespace Valet;
 
 public class App
 {
-    const string ValetImage = "valet-customers/valet-cli";
-    const string ValetContainerRegistry = "ghcr.io";
+    private const string ValetImage = "valet-customers/valet-cli";
+    private const string ValetContainerRegistry = "ghcr.io";
 
     private readonly IDockerService _dockerService;
     private readonly IProcessService _processService;
