@@ -1,4 +1,5 @@
-﻿using System.CommandLine;
+﻿using System.Collections.Immutable;
+using System.CommandLine;
 namespace Valet.Commands;
 
 public class Forecast : ContainerCommand
@@ -32,10 +33,9 @@ public class Forecast : ContainerCommand
         AllowMultipleArgumentsPerToken = true
     };
 
-    protected override List<Option> Options => new()
-    {
+    protected override ImmutableArray<Option> Options => ImmutableArray.Create<Option>(
         SourceFilePath
-    };
+    );
 
     protected override Command GenerateCommand(App app)
     {

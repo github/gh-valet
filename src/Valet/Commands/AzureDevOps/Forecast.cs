@@ -1,4 +1,5 @@
-﻿using System.CommandLine;
+﻿using System.Collections.Immutable;
+using System.CommandLine;
 
 namespace Valet.Commands.AzureDevOps;
 
@@ -19,12 +20,11 @@ public class Forecast : ContainerCommand
         AllowMultipleArgumentsPerToken = true,
     };
 
-    protected override List<Option> Options => new()
-    {
+    protected override ImmutableArray<Option> Options => ImmutableArray.Create<Option>(
         Common.Organization,
         Common.Project,
         Common.InstanceUrl,
         Common.AccessToken,
         SourceFilePath
-    };
+    );
 }

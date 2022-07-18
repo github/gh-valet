@@ -1,18 +1,18 @@
-﻿using Sharprompt;
+﻿using System.Collections.Immutable;
+using Sharprompt;
 using Valet.Interfaces;
 
 namespace Valet.Services;
 
 public class ConfigurationService : IConfigurationService
 {
-    public async Task<Dictionary<string, string>> ReadCurrentVariablesAsync(string filePath = ".env.local")
+    public async Task<ImmutableDictionary<string, string>> ReadCurrentVariablesAsync(string filePath = ".env.local")
     {
-        var variables = new Dictionary<string, string>();
-
         if (!File.Exists(filePath))
-            return variables;
+            return ImmutableDictionary<string, string>.Empty;
 
         var lines = await File.ReadAllLinesAsync(filePath);
+        var variables = ImmutableDictionary.CreateBuilder<string, string>();
 
         foreach (var line in lines)
         {
@@ -24,10 +24,10 @@ public class ConfigurationService : IConfigurationService
             variables[variable[0]] = variable[1];
         }
 
-        return variables;
+        return variables.ToImmutable();
     }
 
-    public Dictionary<string, string> GetUserInput()
+    public ImmutableDictionary<string, string> GetUserInput()
     {
         var providers = Prompt.MultiSelect(
             "Which CI providers are you configuring?",
@@ -35,7 +35,7 @@ public class ConfigurationService : IConfigurationService
             pageSize: 5
         );
 
-        var input = new Dictionary<string, string>();
+        var input = ImmutableDictionary.CreateBuilder<string, string>();
 
         Console.WriteLine("Enter the following values (leave empty to omit):");
 
@@ -64,10 +64,10 @@ public class ConfigurationService : IConfigurationService
             }
         }
 
-        return input;
+        return input.ToImmutable();
     }
 
-    public async Task WriteVariablesAsync(Dictionary<string, string> variables, string filePath = ".env.local")
+    public async Task WriteVariablesAsync(ImmutableDictionary<string, string> variables, string filePath = ".env.local")
     {
         var lines = variables.Select(kvp => $"{kvp.Key}={kvp.Value}").ToList();
         await File.WriteAllLinesAsync(filePath, lines);
