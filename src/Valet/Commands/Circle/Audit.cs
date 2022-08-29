@@ -17,7 +17,7 @@ public class Audit : ContainerCommand
         Description = "The file path corresponding to the CircleCI configuration file.",
         IsRequired = false,
     };
-    
+
     private static readonly Option<FileInfo> IncludeFrom = new("--include-from")
     {
         Description = "The file path containing a list of line-delimited repositories to include in the audit.",
