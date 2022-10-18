@@ -12,25 +12,25 @@ public class Forecast : ContainerCommand
     protected override string Name => "github";
     protected override string Description => "Forecasts GitHub Actions usage from historical GitHub pipeline utilization.";
 
-    public static readonly Option<string> InstanceUrl = new("--github-instance-url")
+    public static readonly Option<string> InstanceUrl = new(new[] { "--github-instance-url", "-u" })
     {
         Description = "The URL of the GitHub instance.",
         IsRequired = false,
     };
 
-    public static readonly Option<string> AccessToken = new("--github-access-token")
+    public static readonly Option<string> AccessToken = new(new[] { "--github-access-token", "-t" })
     {
         Description = "Access token for the GitHub instance.",
         IsRequired = false,
     };
 
-    public static readonly Option<string> Organization = new("--organization")
+    public static readonly Option<string> Organization = new(new[] { "--organization", "-g" })
     {
         Description = "The GitHub organization name.",
         IsRequired = true,
     };
 
-    public static readonly Option<string> Repository = new("--repository")
+    public static readonly Option<string> Repository = new(new[] { "--repository", "-r" })
     {
         Description = "The GitHub repository name.",
         IsRequired = false,
