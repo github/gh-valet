@@ -5,6 +5,8 @@ namespace Valet.Services;
 
 public class ProcessService : IProcessService
 {
+    private static readonly object ConsoleWriterLock = new();
+
     public async Task RunAsync(
         string filename,
         string arguments,
@@ -25,8 +27,11 @@ public class ProcessService : IProcessService
             writer.Close();
         }
 
-        ReadStream(process.StandardOutput, output, cts.Token);
-        ReadStream(process.StandardError, output, cts.Token);
+        if (output)
+        {
+            ReadStream(process.StandardOutput, cts.Token);
+            ReadStream(process.StandardError, cts.Token);
+        }
 
         await process.WaitForExitAsync(cts.Token);
 
@@ -83,17 +88,29 @@ public class ProcessService : IProcessService
         };
     }
 
-    private static void ReadStream(StreamReader reader, bool output, CancellationToken ctx)
+    private static void ReadStream(StreamReader reader, CancellationToken ctx)
     {
         Task.Run(() =>
         {
             while (!ctx.IsCancellationRequested)
             {
-                int current;
-                while ((current = reader.Read()) >= 0)
+                int current = reader.Read();
+
+                if (current >= 0)
                 {
-                    if (output)
-                        Console.Write((char)current);
+                    lock (ConsoleWriterLock)
+                    {
+                        while (current >= 0)
+                        {
+                            Console.Write((char)current);
+
+                            if (reader.Peek() == -1)
+                            {
+                                break;
+                            }
+                            current = reader.Read();
+                        }
+                    }
                 }
             }
         }, ctx);
