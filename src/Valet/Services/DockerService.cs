@@ -127,16 +127,16 @@ public class DockerService : IDockerService
 
     private async Task DockerLoginAsync(string server, string username, string password)
     {
-        var login_result = await _processService.RunAndCaptureAsync(
+        var (standardOutput, standardError, exitCode) = await _processService.RunAndCaptureAsync(
             "docker",
             $"login {server} --username {username} --password-stdin",
             throwOnError: false,
             inputForStdIn: password
         ).ConfigureAwait(false);
 
-        if (login_result.exitCode != 0)
+        if (exitCode != 0)
         {
-            string message = login_result.standardError.Trim();
+            string message = standardError.Trim();
             string? errorMessage = message == $"Error response from daemon: Get \"https://{server}/v2/\": denied: denied"
                 ? @"You are not authorized to access Valet yet. Please ensure you've completed the following:
 - Requested access to Valet and received onboarding instructions via email.
@@ -146,21 +146,21 @@ public class DockerService : IDockerService
             throw new Exception(errorMessage);
         }
 
-        Console.WriteLine(login_result.standardOutput);
+        Console.WriteLine(standardOutput);
     }
 
     private async Task DockerPullAsync(string image, string server, string version)
     {
         Console.WriteLine($"Pulling {image}:{version} from the {server} docker repository...");
-        var docker_pull = await _processService.RunAndCaptureAsync(
+        var (_, standardError, exitCode) = await _processService.RunAndCaptureAsync(
             "docker",
             $"pull {server}/{image}:{version} --quiet",
             throwOnError: false
         );
 
-        if (docker_pull.exitCode != 0)
+        if (exitCode != 0)
         {
-            string message = docker_pull.standardError.Trim();
+            string message = standardError.Trim();
             string? errorMessage = message == "Error response from daemon: denied"
                 ? @"You are not authorized to access Valet yet. Please ensure you've completed the following:
 - Requested access to Valet and received onboarding instructions via email.
