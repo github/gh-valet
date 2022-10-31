@@ -26,7 +26,7 @@ public class ProcessService : IProcessService
             await writer.WriteAsync(inputForStdIn);
             writer.Close();
         }
-         
+
         ReadStream(process.StandardOutput, output, cts.Token);
         ReadStream(process.StandardError, output, cts.Token);
 
