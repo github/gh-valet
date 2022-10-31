@@ -18,11 +18,8 @@ public class ProcessService : IProcessService
         using var process = GetProcess(filename, arguments, cwd, environmentVariables);
         process.Start();
 
-        if (output)
-        {
-            ReadStream(process.StandardOutput, cts.Token);
-            ReadStream(process.StandardError, cts.Token);
-        }
+        ReadStream(process.StandardOutput, output, cts.Token);
+        ReadStream(process.StandardError, output, cts.Token);
 
         await process.WaitForExitAsync(cts.Token);
 
@@ -93,7 +90,7 @@ public class ProcessService : IProcessService
         };
     }
 
-    private static void ReadStream(StreamReader reader, CancellationToken ctx)
+    private static void ReadStream(StreamReader reader, bool output, CancellationToken ctx)
     {
         Task.Run(() =>
         {
@@ -107,7 +104,9 @@ public class ProcessService : IProcessService
                     {
                         while (current >= 0)
                         {
-                            Console.Write((char)current);
+                            // Do not move this check outside of this method, or executions of gh-valet on Windows will hang
+                            if (output)
+                                Console.Write((char)current);
 
                             if (reader.Peek() == -1)
                             {
