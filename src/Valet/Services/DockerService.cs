@@ -161,12 +161,17 @@ public class DockerService : IDockerService
         if (exitCode != 0)
         {
             string message = standardError.Trim();
-            string? errorMessage = message == "Error response from daemon: denied"
-                ? @"You are not authorized to access Valet yet. Please ensure you've completed the following:
+            string errorMessage = $"There was an error pulling the {image}:{version} image from the {server} docker repository.\nError: {message}";
+
+            if (message == "Error response from daemon: denied"
+                || message == $"Error response from daemon: Head \"https://{server}/v2/valet-customers/valet-cli/manifests/latest\": unauthorized")
+            {
+                errorMessage = @"You are not authorized to access Valet yet. Please ensure you've completed the following:
 - Requested access to Valet and received onboarding instructions via email.
 - Accepted all of the repository invites sent after being onboarded.
-- The GitHub personal access token used above contains the 'read:packages' scope."
-                : $"There was an error pulling the {image}:{version} image from the {server} docker repository.\nError: {message}";
+- The GitHub personal access token used above contains the 'read:packages' scope.";
+            }
+
             throw new Exception(errorMessage);
         }
         Console.WriteLine($"Successfully downloaded {image}:{version}");
