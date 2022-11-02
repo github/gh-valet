@@ -148,6 +148,40 @@ public class DockerServiceTests
     }
 
     [Test]
+    public void UpdateImageAsync_Unauthenticated_ThrowsUnauthorized()
+    {
+        // Arrange
+        var image = "valet-customers/valet-cli";
+        var server = "ghcr.io";
+        var version = "latest";
+
+        _processService.Setup(handler =>
+            handler.RunAndCaptureAsync(
+                "docker",
+                $"pull {server}/{image}:{version} --quiet",
+                It.IsAny<string?>(),
+                It.IsAny<IEnumerable<(string, string)>?>(),
+                It.IsAny<bool>(),
+                null
+            )
+        ).ReturnsAsync(("", $"Error response from daemon: Head \"https://{server}/v2/valet-customers/valet-cli/manifests/latest\": unauthorized", 1));
+
+        // Act/Assert
+        Assert.ThrowsAsync<Exception>(() => _dockerService.UpdateImageAsync(
+            image,
+            server,
+            version,
+            null,
+            null
+        ),
+            @"You are not authorized to access Valet yet. Please ensure you've completed the following:
+- Requested access to Valet and received onboarding instructions via email.
+- Accepted all of the repository invites sent after being onboarded.
+- The GitHub personal access token used above contains the 'read:packages' scope.");
+        _processService.VerifyAll();
+    }
+
+    [Test]
     public void UpdateImageAsync_InvalidCredentialsProvided_ThrowsUnknownError()
     {
         // Arrange
