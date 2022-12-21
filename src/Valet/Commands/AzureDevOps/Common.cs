@@ -28,9 +28,9 @@ public static class Common
         IsRequired = false,
     };
 
-    public static readonly Option<int> PipelineId = new(new[] { "--pipeline-id", "-i" })
+    public static readonly Option<FileInfo> SourceFilePath = new("--source-file-path")
     {
-        Description = "The Azure DevOps pipeline id.",
-        IsRequired = true,
+        Description = "The file path corresponding to the Azure DevOps pipeline file.",
+        IsRequired = false,
     };
 }
