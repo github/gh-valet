@@ -12,11 +12,5 @@ public class DryRun : ContainerCommand
     protected override string Name => "release";
     protected override string Description => "Target a release pipeline";
 
-    public static readonly Option<int> PipelineId = new(new[] { "--pipeline-id", "-i" })
-    {
-        Description = "The Azure DevOps pipeline id.",
-        IsRequired = true,
-    };
-
     protected override ImmutableArray<Option> Options => ImmutableArray<Option>.Empty;
 }

@@ -28,6 +28,12 @@ public static class Common
         IsRequired = false,
     };
 
+    public static readonly Option<int> PipelineId = new(new[] { "--pipeline-id", "-i" })
+    {
+        Description = "The Azure DevOps pipeline id.",
+        IsRequired = true,
+    };
+
     public static readonly Option<FileInfo> SourceFilePath = new("--source-file-path")
     {
         Description = "The file path corresponding to the Azure DevOps pipeline file.",
