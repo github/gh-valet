@@ -30,13 +30,13 @@ public static class Common
 
     public static readonly Option<int> PipelineIdRequired = new(new[] { "--pipeline-id", "-i" })
     {
-        Description = "The Azure DevOps pipeline id.",
+        Description = "The Azure DevOps pipeline ID.",
         IsRequired = true,
     };
 
     public static readonly Option<int> PipelineIdNotRequired = new(new[] { "--pipeline-id", "-i" })
     {
-        Description = "The Azure DevOps pipeline id.",
+        Description = "The Azure DevOps pipeline ID.",
         IsRequired = false,
     };
 
