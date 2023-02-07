@@ -12,7 +12,7 @@ public class DryRun : ContainerCommand
     protected override string Name => "pipeline";
     protected override string Description => "Target a designer or YAML pipeline";
 
-    protected override ImmutableArray<Option> Options => ImmutableArray.Create<Option>(\
+    protected override ImmutableArray<Option> Options => ImmutableArray.Create<Option>(
         Common.ConfigFilePath,
         Common.SourceFilePath,
         Common.PipelineIdNotRequired
