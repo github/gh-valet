@@ -12,6 +12,7 @@ public class DryRun : ContainerCommand
     protected override string Name => "release";
     protected override string Description => "Target a release pipeline";
     protected override ImmutableArray<Option> Options => ImmutableArray.Create<Option>(
+        Common.ConfigFilePath,
         Common.PipelineIdRequired
     );
 }
